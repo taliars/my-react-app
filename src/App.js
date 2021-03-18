@@ -5,12 +5,12 @@ import Person from './Person/Person';
 class App extends Component {
   state = {
     persons: [
-      { name: "Stas", age: "32" },
-      { name: "Ulya", age: "24" },
-      { name: "Senya", age: "2" },
-      { name: "Anya", age: "53" },
-      { name: "Akim", age: "27" },
-      { name: "Marina", age: "25" }
+      { name: "Stas", age: "32", hobby: "" },
+      { name: "Ulya", age: "24", hobby: "" },
+      { name: "Senya", age: "2", hobby: "" },
+      { name: "Anya", age: "53", hobby: "" },
+      { name: "Akim", age: "27", hobby: "" },
+      { name: "Marina", age: "25", hobby: "" }
     ],
     description: "This is our family"
   };
@@ -24,7 +24,7 @@ class App extends Component {
 
   changeNameHandler = event => {
     let updatedPersons = [...this.state.persons];
-    updatedPersons[1].name = event.target.value;
+    updatedPersons[2].hobby = event.target.value;
     this.setState({ persons: [...updatedPersons] });
   }
 
@@ -32,20 +32,25 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Hello!</h1>
-        <p>{this.state.description}</p>
-        <button onClick={this.switchNameHandler}>Switch Name</button>
+        <h2>{this.state.description.toUpperCase()}</h2>
+        {/* <button onClick={this.switchNameHandler}>Switch Name</button> */}
         <Person
           name={this.state.persons[0].name}
           age={this.state.persons[0].age}>
-          My hobbies are do nothing
+          His hobby is to tyk-tyk on computer
         </Person>
         <Person
           name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          change={this.changeNameHandler} />
+          age={this.state.persons[1].age}>
+          Her hobby is design
+          </Person>
         <Person
           name={this.state.persons[2].name}
-          age={this.state.persons[2].age} />
+          age={this.state.persons[2].age}
+          hobby={this.state.persons[2].hobby}
+          change={this.changeNameHandler}  >
+          {this.state.persons[2].hobby}
+        </Person>
       </div>
     )
   };

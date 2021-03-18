@@ -1,10 +1,11 @@
 import React from 'react';
+import './Person.css';
 
 const person = props =>
-    <div>
+    <div className="Person">
         <p><strong>{props.name}</strong> is {props.age} years old!</p>
         <p>{props.children}</p>
-        <input onChange={props.change} value={props.name} />
+        <input onChange={props.change} value={props.hobby} />
     </div>
 
 export default person;
