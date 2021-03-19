@@ -5,20 +5,21 @@ import Person from './Person/Person';
 class App extends Component {
   state = {
     persons: [
-      { name: "Stas", age: "32", hobby: "" },
-      { name: "Ulya", age: "24", hobby: "" },
-      { name: "Senya", age: "2", hobby: "" },
-      { name: "Anya", age: "53", hobby: "" },
-      { name: "Akim", age: "27", hobby: "" },
-      { name: "Marina", age: "25", hobby: "" }
+      { id: "1", name: "Stas", age: "32", gender: "male", hobby: "To prog" },
+      { id: "2", name: "Ulya", age: "24", gender: "female", hobby: "To design" },
+      { id: "3", name: "Senya", age: "2", gender: "male", hobby: "To cry" },
+      { id: "4", name: "Anya", age: "53", gender: "female", hobby: "To sit with rugrats" },
+      { id: "5", name: "Akim", age: "27", gender: "male", hobby: "To be successful" },
+      { id: "6", name: "Marina", age: "25", gender: "female", hobby: "To hang around" }
     ],
     description: "This is our family",
     showPersons: false
   };
 
-  changeNameHandler = event => {
+  nameChangedHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => p.id === id);
     let updatedPersons = [...this.state.persons];
-    updatedPersons[2].hobby = event.target.value;
+    updatedPersons[personIndex].hobby = event.target.value;
     this.setState({ persons: [...updatedPersons] });
   }
 
@@ -27,40 +28,41 @@ class App extends Component {
     this.setState({ showPersons: !doesShowPersons });
   }
 
+  deletePersonHandler = personIndex => {
+    // const persons = this.state.persons.slice();
+    const persons = [...this.state.persons];
+    persons.splice(personIndex, 1);
+    this.setState({ persons: persons });
+  }
+
   render() {
+    let persons = null;
+
+    if (this.state.showPersons) {
+      persons = this.state.persons.map((person, index) =>
+        <Person
+          name={person.name}
+          age={person.age}
+          gender={person.gender}
+          hobby={person.hobby}
+          key={person.id}
+          click={this.deletePersonHandler.bind(this, index)}
+          change={(event) => this.nameChangedHandler(event, person.id)}>
+          {person.hobby}
+        </Person>)
+    }
+
     return (
-      <div className="App">
+      <div className="App" >
         <h1>Hello!</h1>
         <h2>{this.state.description.toUpperCase()}</h2>
         <button
+          className="ButtonStyle"
           onClick={this.togglePersonsHandler}>
           Toggle family
         </button>
-        {
-          this.state.showPersons
-            ? <div>
-              <Person
-                name={this.state.persons[0].name}
-                age={this.state.persons[0].age}>
-                His hobby is to tyk-tyk on computer
-              </Person>
-              <Person
-                name={this.state.persons[1].name}
-                age={this.state.persons[1].age}>
-                Her hobby is design
-              </Person>
-              <Person
-                name={this.state.persons[2].name}
-                age={this.state.persons[2].age}
-                hobby={this.state.persons[2].hobby}
-                change={this.changeNameHandler}  >
-                {this.state.persons[2].hobby}
-              </Person>
-            </div>
-            : <h3>No persons to show</h3>
-        }
-      </div>
-    )
+        { persons }
+      </div>)
   };
 }
 
