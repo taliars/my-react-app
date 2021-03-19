@@ -1,10 +1,10 @@
-import React from 'react';
-import '../App.css';
+import './UserInput.css';
 
-const UserInput = props =>
+const userInput = props =>
     <input
+        type="text"
         className="Input"
         onChange={props.change}
         value={props.usernane} />
 
-export default UserInput;
+export default userInput;
