@@ -1,0 +1,10 @@
+.CharBox {
+    font-weight: bold;
+    background-color: darkkhaki;
+    display: inline-block;
+    padding: 18px;
+    text-align: center;
+    margin: 16px;
+    border: 10px solid black;
+    border-radius: 15px;
+}
