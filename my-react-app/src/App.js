@@ -34,7 +34,7 @@ class App extends Component {
         <h2>{this.state.description.toUpperCase()}</h2>
         <button
           onClick={this.togglePersonsHandler}>
-          Toggle persons
+          Toggle family
         </button>
         {
           this.state.showPersons
