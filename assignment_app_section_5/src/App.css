@@ -3,3 +3,11 @@
   display: block;
   text-align: center;
 }
+
+.Input {
+  outline: none;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 30px;
+}

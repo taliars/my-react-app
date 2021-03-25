@@ -1,0 +1,14 @@
+.Valid {
+    color: green;
+}
+
+.Invalid {
+ color: red;
+}
+
+.Message {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 20px 0 5px 0;
+    padding: 0;
+}

@@ -1,28 +1,32 @@
 import './App.css';
 import Validation from './Validation/Validation';
-import Char from './Char/Char';
+import CharBox from './CharBox/CharBox';
 import { useState } from 'react';
 
 function App() {
-  const [textState, setTextState] = useState({ text: "Initial" });
+  const [userInput, setUserInput] = useState({ text: "Initial" });
 
-  const textChangeHandler = event => setTextState({ text: event.target.value });
+  const inputChangeHandler = event => setUserInput({ text: event.target.value });
 
   const deleteCharHandler = (index) => {
-    var initialText = [...textState.text];
-    initialText.splice(index, 1);   
-    setTextState({ text: initialText.join('')});
+    var initialText = [...userInput.text];
+    initialText.splice(index, 1);
+    setUserInput({ text: initialText.join('') });
   }
 
-  const charboxes = textState.text.split('').map((c, index) => 
-    <Char delete={() => deleteCharHandler(index)} charBoxContent={c}/>)
+  const charboxes = userInput.text.split('').map((c, index) =>
+    <CharBox delete={() => deleteCharHandler(index)} key={index} content={c} />)
 
   return (
     <div className="App">
-      <Validation text={textState.text} />
-      <input onChange={textChangeHandler} value={textState.text} />
+      <Validation inputLength={userInput.text.length} />
+      <input
+        className="Input"
+        type="text"
+        onChange={inputChangeHandler}
+        value={userInput.text} />
       <div>
-        { charboxes }
+        {charboxes}
       </div>
     </div>
   );

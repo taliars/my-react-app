@@ -1,10 +1,10 @@
 import './Char.css'
 
-const char = props =>{
+const char = props => {
     return <div className="CharBox" onClick={props.delete}>
-        {props.charBoxContent === " " ? <br/> : props.charBoxContent.toUpperCase()}
+        {props.content === " " ? <br /> : props.content.toUpperCase()}
     </div>
 }
-    
+
 
 export default char;
