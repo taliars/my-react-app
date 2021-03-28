@@ -1,6 +1,6 @@
-import './App.css';
 import React, { Component } from 'react';
-import Person from './Person/Person';
+import Person from '../components/Persons/Person/Person';
+import classes from './App.module.css';
 
 class App extends Component {
   state = {
@@ -52,16 +52,25 @@ class App extends Component {
         </Person>)
     }
 
+    const assignedClasses = [];
+
+    if (this.state.persons.length <= 2) {
+      assignedClasses.push(classes.red);
+    }
+    if (this.state.persons.length <= 2) {
+      assignedClasses.push(classes.bold);
+    }
+
     return (
-      <div className="App" >
+      <div className={classes.App} >
         <h1>Hello!</h1>
-        <h2>{this.state.description.toUpperCase()}</h2>
+        <h2 className={assignedClasses.join(' ')}>{this.state.description.toUpperCase()}</h2>
         <button
-          className="ButtonStyle"
+          className={classes.Button}
           onClick={this.togglePersonsHandler}>
           Toggle family
         </button>
-        { persons }
+        { persons}
       </div>)
   };
 }
